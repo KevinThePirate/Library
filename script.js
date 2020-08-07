@@ -22,8 +22,9 @@ const render = (array = myLibrary) => {
    <h1>${book.name}</h1>
    <h3>${book.author}</h3>
    <h4>${book.date}</h4>
-   <h5>${book.isRead} </h5>
-   <h6 class='delete-button' onclick='deleteButton(this.id)' id='${totalBooks}'></h6></div>`;
+   <h5>${book.isRead} </h5><div id ='button-area'>
+   <div class='delete-button' onclick='deleteButton(this.id)' id='${totalBooks}'></div>
+   <div class='edit-button' onclick='edit(this.id)' id='${totalBooks}'></div></div></div>`;
    totalBooks++;
     })
 }
@@ -47,7 +48,13 @@ const deleteButton = (clicked_val) => {
   myLibrary.splice(clicked_val, 1);
   render()
 }
+const edit = (clicked_val) => {
+  appear();
+  document.getElementById('name-of-book').value = myLibrary[clicked_val].name;
+  document.getElementById('author-of-book').value = myLibrary[clicked_val].author;
+  document.getElementById('date-of-book').value = myLibrary[clicked_val].date;
 
+}
 const filter = (type) => {
   let filtered;
   const elems = document.querySelectorAll(".filtered");

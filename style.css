@@ -115,12 +115,24 @@ main{
               opacity: 1;
     }
   }
-.delete-button{
+  #button-area{
+      display: flex;
+      justify-content: center;
+  }
+.delete-button, .edit-button{
     width: 25px;
     height: 25px;
-    background-image: url(trash.png);
     background-size: contain;
     background-repeat: no-repeat;
-    margin-left: calc(50% - 12.5px);
     cursor: pointer;
+    flex: 1;
+    margin: 5px
+}
+.delete-button{
+    background-image: url(trash.png);
+    background-position: right;
+}
+.edit-button{
+    background-image: url(pencil.png);
+    background-position: left;
 }
