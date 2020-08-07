@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>My Library</h1>
+    <button id="add-button" onclick="appear()"></button>
+    <div id="filters">
+        <ul>
+            <li class="filtered" onclick="filter('all')" id="all">All Books</li>
+            <li onclick="filter('read')" id="read">Read</li>
+            <li onclick="filter('unread')" id="unread">Unread</li>
+        </ul>
+    </div>
+    <main id="library"> 
+    </main>
+    <div id="add-form">
+        <label for="name">Name of Book:</label>
+        <input type="text" name="name" class="form" id="name-of-book">
+        <br>
+        <label for="author">Author of Book:</label>
+        <input type="text" name="author" class="form" id="author-of-book">
+        <br>
+        <label for="date">Date of Publication</label>
+        <input type="text" name="date" class="form" id="date-of-book">
+        <br>
+        <label for="date">Read?</label>
+        <input type="checkbox" name="read" class="form" id="read-book" unchecked>
+        <br>
+        <button id="form-button" onclick="addBook()">Add</button>
+    </div>
+</body>
+</html>

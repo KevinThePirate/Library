@@ -1,0 +1,126 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+html{
+    height: 100%;
+    background-image: linear-gradient(#F2A25C, #F2845C);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+h1{
+    color: white;
+    padding: 20px;
+    padding-bottom: 0;
+}
+li{
+    display: inline;
+    margin: 20px;
+    padding-right: 10px;
+    color: white;
+    cursor: pointer;
+}
+.filtered{
+    font-weight: bold;
+    border-bottom: 2px solid white;
+}
+main{
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+}
+.book{
+    width: 140px;
+    height: 250px;
+    max-height: 250px;
+    background-color: #BF365A;
+    box-shadow: 10px 10px 5px 0px #732D53;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin: 20px;
+    border-radius: 5px;
+    display: grid;
+    grid-template-rows: 2fr 1fr 1fr 1fr 1fr;
+}
+.book > *{
+    padding-bottom: 10px;
+}
+.book h1{
+ font-size: 2vw;   
+}
+#add-button{
+    height: 50px;
+    width: 50px;
+    background: url('addButton.png') no-repeat;
+    background-size: cover;
+    border: 0px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+#add-form{
+    width: 50%;
+    height: 300px;
+    position: absolute;
+    top: 50px;
+    left: 25%;
+    background-color: #F27166;
+    box-shadow: 10px 10px 5px 0px #732D53;
+    border-radius: 5px;
+    padding: 10px;
+    padding-top: 30px;
+    transition: 0.1s;
+    display: none;
+}
+#add-form > * {
+    display: block;
+}
+#form-button, #add-form input{
+    margin: auto;
+    background-color: #F2A25C;
+    border: 0px;
+    border-bottom: 3px solid #BF365A;
+}
+#add-form input {
+    width: 100%;
+    
+}
+#form-button{
+    width: 100px;
+    height: 50px;
+}
+.slide-bottom {
+	-webkit-animation: slide-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+.slide-top{
+    -webkit-animation: slide-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+            animation: slide-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+            -webkit-animation-direction: reverse;
+            animation-direction: reverse;
+}
+@-webkit-keyframes slide-bottom {
+    0% {
+      -webkit-transform: translateY(-100px);
+              transform: translateY(-100px);
+              display: none;
+              opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateY(0);
+              transform: translateY(0);
+              display: block;
+              opacity: 1;
+    }
+  }
+.delete-button{
+    width: 25px;
+    height: 25px;
+    background-image: url(trash.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-left: calc(50% - 12.5px);
+    cursor: pointer;
+}
