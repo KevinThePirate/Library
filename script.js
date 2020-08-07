@@ -5,13 +5,9 @@ function Book(name, author, date, isRead){
   this.isRead = isRead;
 }
 let totalBooks = 0;
-let lotr = new Book('Lord of The Rings', 'J.R.R Tolkein', '1922', 'READ')
-let test = new Book('Test','Kevin Smith', '2020', 'NOT READ')
-let myLibrary = [lotr, test, lotr];
-let addBookToLibrary = () => {
-
-}
-function readCheck(){
+let lotr = new Book('Lord of The Rings', 'J.R.R Tolkein', '1954', 'READ')
+let myLibrary = [lotr];
+const readCheck = () => {
   if(document.getElementById("read-book").checked)
   {return 'READ'
 }else{
