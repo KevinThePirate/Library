@@ -6,7 +6,7 @@ function Book(name, author, date, isRead){
 }
 let transferValue;
 let totalBooks = 0;
-let lotr = new Book('Lord of The Rings', 'J.R.R Tolkein', '1954', 'READ')
+const lotr = new Book('Lord of The Rings', 'J.R.R Tolkein', '1954', 'READ')
 let myLibrary = [lotr];
 const readCheck = () => {
   if(document.getElementById("read-book").checked)
@@ -21,9 +21,9 @@ const render = (array = myLibrary) => {
     array.forEach(book => {
    document.getElementById('library').innerHTML += `<div class="book">
    <h1>${book.name}</h1>
-   <h3>${book.author}</h3>
-   <h4>${book.date}</h4>
-   <h5>${book.isRead} </h5><div id ='button-area'>
+   <p>${book.author}</p>
+   <p>${book.date}</p>
+   <p>${book.isRead} </p><div id ='button-area'>
    <div class='delete-button' onclick='deleteButton(this.id)' id='${totalBooks}'></div>
    <div class='edit-button' onclick='openEdit(this.id)' id='${totalBooks}'></div></div></div>`;
    totalBooks++;
