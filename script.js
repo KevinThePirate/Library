@@ -4,6 +4,7 @@ function Book(name, author, date, isRead){
   this.date = date;
   this.isRead = isRead;
 }
+let transferValue;
 let totalBooks = 0;
 let lotr = new Book('Lord of The Rings', 'J.R.R Tolkein', '1954', 'READ')
 let myLibrary = [lotr];
@@ -24,13 +25,16 @@ const render = (array = myLibrary) => {
    <h4>${book.date}</h4>
    <h5>${book.isRead} </h5><div id ='button-area'>
    <div class='delete-button' onclick='deleteButton(this.id)' id='${totalBooks}'></div>
-   <div class='edit-button' onclick='edit(this.id)' id='${totalBooks}'></div></div></div>`;
+   <div class='edit-button' onclick='openEdit(this.id)' id='${totalBooks}'></div></div></div>`;
    totalBooks++;
     })
 }
 const addBook = () => {
   myLibrary.push(new Book(document.getElementById('name-of-book').value, document.getElementById('author-of-book').value, document.getElementById('date-of-book').value, readCheck()))
 
+  disappear();
+}
+const disappear = () => {
   document.getElementById('add-form').classList = 'slide-top'
   setTimeout(function(){document.getElementById('add-form').classList = ''; document.getElementById('add-form').style.display = 'none';},500);
   render();
@@ -48,12 +52,25 @@ const deleteButton = (clicked_val) => {
   myLibrary.splice(clicked_val, 1);
   render()
 }
-const edit = (clicked_val) => {
+const openEdit = (clicked_val) => {
+  //document.getElementById('switch-button').innerHTML = '<button id="form-button" onclick="edit(this.id)">Edit</button>';
   appear();
   document.getElementById('name-of-book').value = myLibrary[clicked_val].name;
   document.getElementById('author-of-book').value = myLibrary[clicked_val].author;
   document.getElementById('date-of-book').value = myLibrary[clicked_val].date;
-
+  document.getElementById('form-button').innerHTML = 'Save'
+  document.getElementById('form-button').setAttribute( "onClick", "javascript: edit();" );
+  transferValue = clicked_val;
+}
+const edit = (clicked_val) => {
+  clicked_val = transferValue;
+  myLibrary[clicked_val].name = document.getElementById('name-of-book').value;
+  myLibrary[clicked_val].author = document.getElementById('author-of-book').value;
+  myLibrary[clicked_val].date = document.getElementById('date-of-book').value;
+  myLibrary[clicked_val].isRead = readCheck();
+  disappear();
+  document.getElementById('form-button').innerHTML = 'Add'
+  document.getElementById('form-button').setAttribute( "onClick", "javascript: addBook();" );
 }
 const filter = (type) => {
   let filtered;
