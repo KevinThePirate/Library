@@ -17,9 +17,9 @@
             <li onclick="filter('unread')" id="unread">Unread</li>
         </ul>
     </div>
-    <main id="library" onclick="disappear()"> 
+    <main id="library"> 
     </main>
-    <div id="add-form">
+    <div id="add-form" onblur="disappear()">
         <label for="name">Name of Book:</label>
         <input type="text" name="name" class="form" id="name-of-book">
         <br>

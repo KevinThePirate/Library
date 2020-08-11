@@ -7,7 +7,8 @@ function Book(name, author, date, isRead){
 let transferValue;
 let totalBooks = 0;
 const lotr = new Book('Lord of The Rings', 'J.R.R Tolkein', '1954', 'READ')
-let myLibrary = [lotr];
+const martian = new Book('The Martian', 'Andy Weir', '2011', 'NOT READ');
+let myLibrary = [lotr, martian];
 const readCheck = () => {
   if(document.getElementById("read-book").checked)
   {return 'READ'
@@ -24,9 +25,10 @@ const render = (array = myLibrary) => {
    <p>${book.author}</p>
    <p>${book.date}</p>
    <p>${book.isRead} </p><div id ='button-area'>
-   <div class='delete-button' onclick='deleteButton(this.id)' id='${totalBooks}'></div>
-   <div class='edit-button' onclick='openEdit(this.id)' id='${totalBooks}'></div></div></div>`;
+   <button class='delete-button' onclick='deleteButton(this.id)' id='${totalBooks}'></button>
+   <button class='edit-button' onclick='openEdit(this.id)' id='${totalBooks}'></button></div></div>`;
    totalBooks++;
+   document.getElementById('add-button').disabled = false;
     })
 }
 const addBook = () => {
@@ -38,26 +40,44 @@ const disappear = () => {
   document.getElementById('add-form').classList = 'slide-top'
   setTimeout(function(){document.getElementById('add-form').classList = ''; document.getElementById('add-form').style.display = 'none';},500);
   render();
+  
 }
 const appear = () => {
+  disableAll()
   document.getElementById('name-of-book').value = '' 
   document.getElementById('author-of-book').value = ''
   document.getElementById('date-of-book').value = ''
+  document.getElementById('read-book').checked = false;
 
   document.getElementById('add-form').style.display = 'block';
   document.getElementById('add-form').classList = 'slide-bottom';
   setTimeout(function(){document.getElementById('add-form').classList = ''},500);
 }
 const deleteButton = (clicked_val) => {
+  if(document.getElementsByClassName('delete-button')[0].style.diabled == true){console.log('disabled')}else{console.log('not')}
   myLibrary.splice(clicked_val, 1);
   render()
 }
+const disableButtons = (blocked) => {
+  const elms = document.getElementsByClassName(blocked);
+  const n = elms.length;
+    for(var i = 0; i < n; i ++) {
+        elms[i].disabled = true;
+    }
+}
+const disableAll = () =>{
+  disableButtons('delete-button');
+  disableButtons('edit-button');
+  document.getElementById('add-button').disabled = true;
+}
 const openEdit = (clicked_val) => {
-  //document.getElementById('switch-button').innerHTML = '<button id="form-button" onclick="edit(this.id)">Edit</button>';
   appear();
+  disableAll();
   document.getElementById('name-of-book').value = myLibrary[clicked_val].name;
   document.getElementById('author-of-book').value = myLibrary[clicked_val].author;
   document.getElementById('date-of-book').value = myLibrary[clicked_val].date;
+  console.log(myLibrary[clicked_val].isRead);
+  if(myLibrary[clicked_val].isRead== 'READ'){document.getElementById('read-book').checked = true;}else{document.getElementById('read-book').checked = false;}
   document.getElementById('form-button').innerHTML = 'Save'
   document.getElementById('form-button').setAttribute( "onClick", "javascript: edit();" );
   transferValue = clicked_val;
@@ -69,8 +89,10 @@ const edit = (clicked_val) => {
   myLibrary[clicked_val].date = document.getElementById('date-of-book').value;
   myLibrary[clicked_val].isRead = readCheck();
   disappear();
-  document.getElementById('form-button').innerHTML = 'Add'
+  setTimeout(function(){
+    document.getElementById('form-button').innerHTML = 'Add'
   document.getElementById('form-button').setAttribute( "onClick", "javascript: addBook();" );
+  },500)
 }
 const filter = (type) => {
   let filtered;

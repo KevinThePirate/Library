@@ -3,6 +3,9 @@
     margin: 0;
     padding: 0;
 }
+*:disabled{
+    opacity: 0.5;
+}
 html{
     height: 100%;
     background-image: linear-gradient(#F2A25C, #F2845C);
@@ -132,7 +135,9 @@ main{
     background-repeat: no-repeat;
     cursor: pointer;
     flex: 1;
-    margin: 5px
+    margin: 5px;
+    background-color: transparent;
+    border: 0;
 }
 .delete-button{
     background-image: url(trash.png);
